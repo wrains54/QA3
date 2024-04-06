@@ -1,0 +1,293 @@
+-- Create a table for storing categories
+CREATE TABLE Categories (
+    CategoryID INT PRIMARY KEY AUTO_INCREMENT,
+    CategoryName VARCHAR(255) NOT NULL
+);
+
+-- Insert the categories into the Categories table
+INSERT INTO Categories (CategoryName) VALUES ('Adv Finance');
+INSERT INTO Categories (CategoryName) VALUES ('Python');
+INSERT INTO Categories (CategoryName) VALUES ('Computer Forensics');
+INSERT INTO Categories (CategoryName) VALUES ('Database');
+
+-- Create a table for storing questions
+CREATE TABLE Questions (
+    QuestionID INT PRIMARY KEY AUTO_INCREMENT,
+    CategoryID INT,
+    QuestionText TEXT NOT NULL,
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
+);
+
+-- Create a table for storing possible answers
+CREATE TABLE Answers (
+    AnswerID INT PRIMARY KEY AUTO_INCREMENT,
+    QuestionID INT,
+    AnswerText VARCHAR(255) NOT NULL,
+    IsCorrect BOOLEAN NOT NULL,
+    FOREIGN KEY (QuestionID) REFERENCES Questions(QuestionID)
+);
+-- Inserting questions for 'Adv Finance'
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Adv Finance'), 'What is the formula for ROI?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'Gain from Investment / Cost of Investment', TRUE),
+(@LastQuestionID, 'Cost of Investment / Gain from Investment', FALSE),
+(@LastQuestionID, 'Cost of Investment - Gain from Investment', FALSE),
+(@LastQuestionID, 'Gain from Investment - Cost of Investment', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Adv Finance'), 'What is the primary goal of financial management?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'To increase sales', FALSE),
+(@LastQuestionID, 'To minimize risk', FALSE),
+(@LastQuestionID, 'To maximize shareholder wealth', TRUE),
+(@LastQuestionID, 'To maximize customer satisfaction', FALSE);
+
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Adv Finance'), 'What is a bull market?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'A market showing consistent price increases', TRUE),
+(@LastQuestionID, 'A market showing consistent price decreases', FALSE),
+(@LastQuestionID, 'A market with stable prices', FALSE),
+(@LastQuestionID, 'A market with high volatility', FALSE);
+
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Adv Finance'), 'What does IPO stand for?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'Initial Public Offering', TRUE),
+(@LastQuestionID, 'International Purchase Order', FALSE),
+(@LastQuestionID, 'Internal Product Output', FALSE),
+(@LastQuestionID, 'Initial Private Offering', FALSE);
+
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Adv Finance'), 'What is diversification?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'Investing in a variety of assets to reduce risk', TRUE),
+(@LastQuestionID, 'Concentrating investments in one sector', FALSE),
+(@LastQuestionID, 'Investing only in stocks', FALSE),
+(@LastQuestionID, 'Investing only in bonds', FALSE);
+
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Adv Finance'), 'What is the primary goal of portfolio management?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'To maximize return for a given level of risk', TRUE),
+(@LastQuestionID, 'To minimize return for a given level of risk', FALSE),
+(@LastQuestionID, 'To eliminate risk entirely', FALSE),
+(@LastQuestionID, 'To invest solely in government securities', FALSE);
+
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Adv Finance'), 'What does CAPM stand for?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'Capital Asset Pricing Model', TRUE),
+(@LastQuestionID, 'Cost Asset Pricing Mechanism', FALSE),
+(@LastQuestionID, 'Capital Allocation Pricing Model', FALSE),
+(@LastQuestionID, 'Corporate Asset Pricing Model', FALSE);
+
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Adv Finance'), 'What is the formula for calculating net present value (NPV)?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'NPV = Net Cash Inflows - Initial Investment', TRUE),
+(@LastQuestionID, 'NPV = Initial Investment - Net Cash Inflows', FALSE),
+(@LastQuestionID, 'NPV = Net Cash Inflows / Initial Investment', FALSE),
+(@LastQuestionID, 'NPV = Initial Investment / Net Cash Inflows', FALSE);
+
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Adv Finance'), 'What is the primary purpose of the Sarbanes-Oxley Act?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'To improve corporate governance and accountability', TRUE),
+(@LastQuestionID, 'To deregulate the stock market', FALSE),
+(@LastQuestionID, 'To decrease corporate transparency', FALSE),
+(@LastQuestionID, 'To reduce corporate taxes', FALSE);
+
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Adv Finance'), 'What does the term leverage refer to in finance?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'Avoiding debt to minimize risk', FALSE),
+(@LastQuestionID, 'Using borrowed funds to increase the potential return of an investment', TRUE),
+(@LastQuestionID, 'Investing solely in equity to maximize returns', FALSE),
+(@LastQuestionID, 'Reducing the use of financial instruments in investment', FALSE);
+
+
+-- Inserting questions for 'Python'
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Python'), 'What keyword defines a function in Python?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'function', FALSE),
+(@LastQuestionID, 'def', TRUE),
+(@LastQuestionID, 'func', FALSE),
+(@LastQuestionID, 'define', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Python'), 'Which function is used to get the ASCII value of a character in Python?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'ord()', TRUE),
+(@LastQuestionID, 'chr()', FALSE),
+(@LastQuestionID, 'ascii()', FALSE),
+(@LastQuestionID, 'str()', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Python'), 'What is the correct way to define a function in Python?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'def myFunction():', TRUE),
+(@LastQuestionID, 'function myFunction():', FALSE),
+(@LastQuestionID, 'create myFunction():', FALSE),
+(@LastQuestionID, 'func myFunction():', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Python'), 'Which of the following data types is immutable?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'Tuple', TRUE),
+(@LastQuestionID, 'List', FALSE),
+(@LastQuestionID, 'Dictionary', FALSE),
+(@LastQuestionID, 'Set', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Python'), 'How do you insert an item at a given position in a list in Python?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'list.insert(index, item)', TRUE),
+(@LastQuestionID, 'list.add(item, index)', FALSE),
+(@LastQuestionID, 'list.append(index, item)', FALSE),
+(@LastQuestionID, 'list.set(index, item)', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Python'), 'What keyword is used to create a class in Python?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'class', TRUE),
+(@LastQuestionID, 'struct', FALSE),
+(@LastQuestionID, 'def', FALSE),
+(@LastQuestionID, 'object', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Python'), 'Which operator is used in Python to check if two variables are equal?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, '==', TRUE),
+(@LastQuestionID, '=', FALSE),
+(@LastQuestionID, '===', FALSE),
+(@LastQuestionID, '!=', FALSE);
+
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Python'), 'Which of the following collections is ordered and changeable in Python?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'List', TRUE),
+(@LastQuestionID, 'Tuple', FALSE),
+(@LastQuestionID, 'Set', FALSE),
+(@LastQuestionID, 'Dictionary', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Python'), 'What is the output of print("Hello World".replace("World", "Python"))?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'Hello Python', TRUE),
+(@LastQuestionID, 'Hello World', FALSE),
+(@LastQuestionID, 'Python', FALSE),
+(@LastQuestionID, 'Error', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Python'), 'How is a block of code inside a loop or a function identified?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'By indentation', TRUE),
+(@LastQuestionID, 'By curly braces', FALSE),
+(@LastQuestionID, 'By parentheses', FALSE),
+(@LastQuestionID, 'By square brackets', FALSE);
+
+
+-- Inserting questions for 'Computer Forensics'
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Computer Forensics'), 'What is a common tool used in computer forensics?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'EnCase', TRUE),
+(@LastQuestionID, 'Photoshop', FALSE),
+(@LastQuestionID, 'Excel', FALSE),
+(@LastQuestionID, 'Word', FALSE);
+
+
+
+-- Inserting questions for 'Database'
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Database'), 'What is a common tool used in computer forensics?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'EnCase', TRUE),
+(@LastQuestionID, 'Photoshop', FALSE),
+(@LastQuestionID, 'Excel', FALSE),
+(@LastQuestionID, 'Word', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Database'), 'What is SQL?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'Structured Query Language', TRUE),
+(@LastQuestionID, 'Simple Query Language', FALSE),
+(@LastQuestionID, 'Structured Question Language', FALSE),
+(@LastQuestionID, 'Simple Question Language', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Database'), 'What does "PRIMARY KEY" in SQL indicate?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'A unique identifier for each row', TRUE),
+(@LastQuestionID, 'A non-unique identifier for each row', FALSE),
+(@LastQuestionID, 'A special keyword for indexing', FALSE),
+(@LastQuestionID, 'A primary function key', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Database'), 'Which SQL statement is used to extract data from a database?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'SELECT', TRUE),
+(@LastQuestionID, 'EXTRACT', FALSE),
+(@LastQuestionID, 'GET', FALSE),
+(@LastQuestionID, 'PULL', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Database'), 'What is a foreign key?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'A key used to link two tables together', TRUE),
+(@LastQuestionID, 'A key that is unique in each table', FALSE),
+(@LastQuestionID, 'A key that is not important', FALSE),
+(@LastQuestionID, 'A key used to encrypt data', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Database'), 'What is normalization in database design?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'The process of minimizing redundancy', TRUE),
+(@LastQuestionID, 'The process of maximizing redundancy', FALSE),
+(@LastQuestionID, 'The process of deleting data', FALSE),
+(@LastQuestionID, 'The process of encrypting data', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Database'), 'Which of the following is a NoSQL database?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'MongoDB', TRUE),
+(@LastQuestionID, 'MySQL', FALSE),
+(@LastQuestionID, 'Oracle', FALSE),
+(@LastQuestionID, 'SQL Server', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Database'), 'Which command is used to remove rows from a table?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'DELETE', TRUE),
+(@LastQuestionID, 'REMOVE', FALSE),
+(@LastQuestionID, 'ERASE', FALSE),
+(@LastQuestionID, 'DROP', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Database'), 'What is the default sort order of the "ORDER BY" clause in SQL?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'Ascending', TRUE),
+(@LastQuestionID, 'Descending', FALSE),
+(@LastQuestionID, 'Random', FALSE),
+(@LastQuestionID, 'Alphabetical', FALSE);
+
+INSERT INTO Questions (CategoryID, QuestionText) VALUES ((SELECT CategoryID FROM Categories WHERE CategoryName = 'Database'), 'What does DDL stand for in SQL?');
+SET @LastQuestionID = LAST_INSERT_ID();
+INSERT INTO Answers (QuestionID, AnswerText, IsCorrect) VALUES
+(@LastQuestionID, 'Data Definition Language', TRUE),
+(@LastQuestionID, 'Data Duplication Language', FALSE),
+(@LastQuestionID, 'Data Development Language', FALSE),
+(@LastQuestionID, 'Data Description Language', FALSE);
+
